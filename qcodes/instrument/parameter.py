@@ -1032,6 +1032,7 @@ class Parameter(_BaseParameter):
                  get_cmd: Optional[Union[str, Callable, bool]] = None,
                  set_cmd:  Optional[Union[str, Callable, bool]] = False,
                  initial_value: Optional[Union[Number, str]] = None,
+                 initial_cache_value: Optional[Union[Number, str]] = None,
                  max_val_age: Optional[float] = None,
                  vals: Optional[Validator] = None,
                  docstring: Optional[str] = None,
@@ -1084,6 +1085,9 @@ class Parameter(_BaseParameter):
 
         if initial_value is not None:
             self.set(initial_value)
+
+        if initial_cache_value is not None:
+            self.cache.set(initial_cache_value)
 
         # generate default docstring
         self.__doc__ = os.linesep.join((
